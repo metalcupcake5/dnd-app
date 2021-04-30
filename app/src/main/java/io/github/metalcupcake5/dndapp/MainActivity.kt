@@ -50,6 +50,7 @@ class MainActivity : AppCompatActivity() {
             data?.getStringExtra(NewCharacterActivity.EXTRA_REPLY)?.let {
                 val character = Character(name=it)
                 characterViewModel.insert(character)
+
             }
         } else {
             Toast.makeText(

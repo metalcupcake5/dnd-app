@@ -17,4 +17,8 @@ class CharacterRepository(private val characterDao: CharacterDao) {
     suspend fun insert(character: Character) {
         characterDao.insert(character)
     }
+
+    suspend fun deleteAll(){
+        characterDao.deleteAll()
+    }
 }

@@ -32,10 +32,6 @@ public abstract class CharacterRoomDatabase : RoomDatabase() {
             // Delete all content here.
             characterDao.deleteAll()
 
-            // Add sample words.
-            var character = Character(name = "test")
-            characterDao.insert(character)
-
         }
     }
 
