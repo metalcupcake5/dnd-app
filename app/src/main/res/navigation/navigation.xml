@@ -1,5 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/navigation">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/characterListFragment">
 
+    <fragment
+        android:id="@+id/characterListFragment"
+        android:name="io.github.metalcupcake5.dndapp.CharacterListFragment"
+        android:label="fragment_character_list"
+        tools:layout="@layout/fragment_character_list" >
+        <action
+            android:id="@+id/action_characterListFragment_to_newCharacterFragment"
+            app:destination="@id/newCharacterFragment" />
+        <action
+            android:id="@+id/action_characterListFragment_to_characterInfoFragment"
+            app:destination="@id/characterInfoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/newCharacterFragment"
+        android:name="io.github.metalcupcake5.dndapp.NewCharacterFragment"
+        android:label="fragment_new_character"
+        tools:layout="@layout/fragment_new_character" />
+    <fragment
+        android:id="@+id/characterInfoFragment"
+        android:name="io.github.metalcupcake5.dndapp.CharacterInfoFragment"
+        android:label="fragment_character_info"
+        tools:layout="@layout/fragment_character_info" />
 </navigation>
