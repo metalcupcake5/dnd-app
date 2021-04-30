@@ -47,8 +47,8 @@ class MainActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
 
         if (requestCode == newCharacterActivityRequestCode && resultCode == Activity.RESULT_OK) {
-            data?.getStringExtra(NewCharacterActivity.EXTRA_REPLY)?.let {
-                val character = Character(name=it)
+            data?.getStringExtra(NewCharacterActivity.EXTRA_NAME)?.let {
+                val character = Character(name = it,className = NewCharacterActivity.EXTRA_CLASS)
                 characterViewModel.insert(character)
 
             }
