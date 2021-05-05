@@ -21,7 +21,11 @@
         android:id="@+id/newCharacterFragment"
         android:name="io.github.metalcupcake5.dndapp.NewCharacterFragment"
         android:label="fragment_new_character"
-        tools:layout="@layout/fragment_new_character" />
+        tools:layout="@layout/fragment_new_character" >
+        <action
+            android:id="@+id/action_newCharacterFragment_to_characterListFragment"
+            app:destination="@id/characterListFragment" />
+    </fragment>
     <fragment
         android:id="@+id/characterInfoFragment"
         android:name="io.github.metalcupcake5.dndapp.CharacterInfoFragment"

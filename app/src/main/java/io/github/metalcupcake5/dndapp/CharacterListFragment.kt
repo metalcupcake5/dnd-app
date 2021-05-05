@@ -1,25 +1,27 @@
 package io.github.metalcupcake5.dndapp
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.*
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+import io.github.metalcupcake5.dndapp.data.CharacterApplication
+import io.github.metalcupcake5.dndapp.data.CharacterViewModel
+import io.github.metalcupcake5.dndapp.data.CharacterViewModelFactory
 import kotlinx.android.synthetic.main.fragment_character_list.*
 import kotlinx.android.synthetic.main.fragment_character_list.view.*
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [CharacterListFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class CharacterListFragment : Fragment() {
+
+    private val characterViewModel: CharacterViewModel by viewModels {
+        CharacterViewModelFactory((requireActivity().application as CharacterApplication).repository)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,9 +32,16 @@ class CharacterListFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val rootView = inflater.inflate(R.layout.fragment_character_list, container, false)
-        /*rootView.button_characterListFragment_newCharacter.setOnClickListener { view ->
-            view.findNavController().navigate(R.id.action_characterListFragment_to_newCharacterFragment)
-        }*/
+
+        val recyclerView = rootView.findViewById<RecyclerView>(R.id.recyclerView_characterListFragment_characters)
+        val adapter = CharacterListAdapter()
+        recyclerView.adapter = adapter
+        recyclerView.layoutManager = LinearLayoutManager(requireActivity())
+
+        characterViewModel.allCharacters.observe(requireActivity(), { characters ->
+            characters?.let { adapter.submitList(it) }
+        })
+
 
         setHasOptionsMenu(true)
 
