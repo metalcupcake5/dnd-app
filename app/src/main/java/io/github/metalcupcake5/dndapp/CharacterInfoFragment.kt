@@ -1,15 +1,16 @@
 package io.github.metalcupcake5.dndapp
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+import androidx.fragment.app.viewModels
+import io.github.metalcupcake5.dndapp.data.Character
+import io.github.metalcupcake5.dndapp.data.CharacterApplication
+import io.github.metalcupcake5.dndapp.data.CharacterViewModel
+import io.github.metalcupcake5.dndapp.data.CharacterViewModelFactory
 
 /**
  * A simple [Fragment] subclass.
@@ -17,15 +18,17 @@ private const val ARG_PARAM2 = "param2"
  * create an instance of this fragment.
  */
 class CharacterInfoFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    private val characterViewModel: CharacterViewModel by viewModels {
+        CharacterViewModelFactory((requireActivity().application as CharacterApplication).repository)
+    }
+    private val ARG_ID = "id"
+    private var characterId: Int = 0
+    private lateinit var character: Character
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+            characterId = it.getInt(ARG_ID)
         }
     }
 
@@ -33,6 +36,16 @@ class CharacterInfoFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        Log.d("characterInfoFragment: ", characterId.toString())
+        characterViewModel.getCharacter(characterId).invokeOnCompletion { data ->
+
+        }
+        /*val character = characterViewModel.allCharacters.observe(requireActivity(), { characters ->
+            character = characters[0]
+            Log.d("characterInfoFragment: ", character.toString())
+        })*/
+
+
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_character_info, container, false)
     }
@@ -48,11 +61,10 @@ class CharacterInfoFragment : Fragment() {
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
-        fun newInstance(param1: String, param2: String) =
+        fun newInstance(param1: Int) =
             CharacterInfoFragment().apply {
                 arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+                    putInt(ARG_ID, param1)
                 }
             }
     }
