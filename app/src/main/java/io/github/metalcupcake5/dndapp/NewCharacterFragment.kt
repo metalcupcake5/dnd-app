@@ -48,14 +48,11 @@ class NewCharacterFragment : Fragment() {
 
         val button = rootView.findViewById<Button>(R.id.button_newCharacter_save)
         button.setOnClickListener {
-            val replyIntent = Intent()
             if (TextUtils.isEmpty(editCharacterView.text)) {
                 Toast.makeText(requireActivity(), "No name provided!", Toast.LENGTH_SHORT).show()
             } else {
                 val characterName = editCharacterView.text.toString()
                 val characterClass = spinner.selectedItem.toString()
-                replyIntent.putExtra(NewCharacterActivity.EXTRA_NAME, characterName)
-                replyIntent.putExtra(NewCharacterActivity.EXTRA_CLASS, characterClass)
                 val character = Character(name = characterName,className = characterClass)
                 characterViewModel.insert(character)
                 view?.findNavController()?.navigate(R.id.action_newCharacterFragment_to_characterListFragment)
