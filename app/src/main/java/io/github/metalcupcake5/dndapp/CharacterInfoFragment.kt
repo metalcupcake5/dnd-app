@@ -11,6 +11,7 @@ import io.github.metalcupcake5.dndapp.data.Character
 import io.github.metalcupcake5.dndapp.data.CharacterApplication
 import io.github.metalcupcake5.dndapp.data.CharacterViewModel
 import io.github.metalcupcake5.dndapp.data.CharacterViewModelFactory
+import kotlinx.android.synthetic.main.fragment_character_info.*
 
 /**
  * A simple [Fragment] subclass.
@@ -23,7 +24,6 @@ class CharacterInfoFragment : Fragment() {
     }
     private val ARG_ID = "id"
     private var characterId: Int = 0
-    private lateinit var character: Character
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,14 +36,17 @@ class CharacterInfoFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        Log.d("characterInfoFragment: ", characterId.toString())
-        characterViewModel.getCharacter(characterId).invokeOnCompletion { data ->
+        var characterList : List<Character>
+        characterViewModel.allCharacters.observe(requireActivity(), { characters ->
+            characterList = characters.filter{ it.id == characterId }
+            if(characterList.isNotEmpty()){
+                val character = characterList[0]
+                Log.d("characterInfoFragment", character.toString())
+                textView_characterInfoFragment_name.text = character.name
+                textView_characterInfoFragment_class.text = "Class: ${character.className}"
+            }
+        })
 
-        }
-        /*val character = characterViewModel.allCharacters.observe(requireActivity(), { characters ->
-            character = characters[0]
-            Log.d("characterInfoFragment: ", character.toString())
-        })*/
 
 
         // Inflate the layout for this fragment
@@ -51,15 +54,6 @@ class CharacterInfoFragment : Fragment() {
     }
 
     companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment CharacterInfoFragment.
-         */
-        // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: Int) =
             CharacterInfoFragment().apply {
