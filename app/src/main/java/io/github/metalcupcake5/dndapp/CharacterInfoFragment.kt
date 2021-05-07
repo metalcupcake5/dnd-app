@@ -2,11 +2,10 @@ package io.github.metalcupcake5.dndapp
 
 import android.os.Bundle
 import android.util.Log
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.navigation.findNavController
 import io.github.metalcupcake5.dndapp.data.Character
 import io.github.metalcupcake5.dndapp.data.CharacterApplication
 import io.github.metalcupcake5.dndapp.data.CharacterViewModel
@@ -47,10 +46,20 @@ class CharacterInfoFragment : Fragment() {
             }
         })
 
-
+        setHasOptionsMenu(true)
 
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_character_info, container, false)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.character_menu, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        //view?.findNavController()?.navigate(R.id.action_characterListFragment_to_newCharacterFragment)
+        return super.onOptionsItemSelected(item)
     }
 
     companion object {
