@@ -21,4 +21,8 @@ class CharacterRepository(private val characterDao: CharacterDao) {
     suspend fun deleteAll(){
         characterDao.deleteAll()
     }
+
+    fun getCharacter(id: Int) {
+        characterDao.getCharacter(id)
+    }
 }

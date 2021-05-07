@@ -20,6 +20,10 @@ class CharacterViewModel(private val repository: CharacterRepository) : ViewMode
     fun deleteAll() = viewModelScope.launch {
         repository.deleteAll()
     }
+
+    fun getCharacter(id: Int) = viewModelScope.launch {
+        repository.getCharacter(id)
+    }
 }
 class CharacterViewModelFactory(private val repository: CharacterRepository) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {

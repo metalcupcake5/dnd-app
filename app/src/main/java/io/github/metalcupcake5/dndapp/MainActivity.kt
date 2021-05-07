@@ -7,6 +7,9 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.NavController
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.NavigationUI
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -17,17 +20,26 @@ import io.github.metalcupcake5.dndapp.data.CharacterViewModelFactory
 
 class MainActivity : AppCompatActivity() {
 
-    private val newCharacterActivityRequestCode = 1
+    /*private val newCharacterActivityRequestCode = 1
     private val characterViewModel: CharacterViewModel by viewModels {
         CharacterViewModelFactory((application as CharacterApplication).repository)
-    }
+    }*/
+
+    private lateinit var navController : NavController
+    private lateinit var navHostFragment : NavHostFragment
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val recyclerView = findViewById<RecyclerView>(R.id.recyclerview)
+        navHostFragment = supportFragmentManager.findFragmentById(R.id.navHostFragment) as NavHostFragment
+        navController = navHostFragment.navController
+
+
+        NavigationUI.setupActionBarWithNavController(this,navController)
+
+        /*val recyclerView = findViewById<RecyclerView>(R.id.recyclerview)
         val adapter = CharacterListAdapter()
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(this)
@@ -40,10 +52,14 @@ class MainActivity : AppCompatActivity() {
         fab.setOnClickListener {
             val intent = Intent(this@MainActivity, NewCharacterActivity::class.java)
             startActivityForResult(intent, newCharacterActivityRequestCode)
-        }
+        }*/
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+    override fun onSupportNavigateUp(): Boolean {
+        return navController.navigateUp()
+    }
+
+    /*override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
         if (requestCode == newCharacterActivityRequestCode && resultCode == Activity.RESULT_OK) {
@@ -58,7 +74,7 @@ class MainActivity : AppCompatActivity() {
                 R.string.empty_not_saved,
                 Toast.LENGTH_LONG).show()
         }
-    }
+    }*/
 
 
 }
