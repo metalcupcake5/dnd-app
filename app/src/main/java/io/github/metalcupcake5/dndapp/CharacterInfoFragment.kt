@@ -40,7 +40,6 @@ class CharacterInfoFragment : Fragment() {
             characterList = characters.filter{ it.id == characterId }
             if(characterList.isNotEmpty()){
                 val character = characterList[0]
-                Log.d("characterInfoFragment", character.toString())
                 textView_characterInfoFragment_name.text = character.name
                 textView_characterInfoFragment_class.text = "Class: ${character.className}"
             }
