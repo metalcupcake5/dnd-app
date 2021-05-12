@@ -3,6 +3,7 @@ package io.github.metalcupcake5.dndapp
 import android.os.Bundle
 import android.util.Log
 import android.view.*
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
@@ -41,7 +42,7 @@ class CharacterInfoFragment : Fragment() {
             if(characterList.isNotEmpty()){
                 val character = characterList[0]
                 textView_characterInfoFragment_name.text = character.name
-                textView_characterInfoFragment_class.text = "Class: ${character.className}"
+                textView_characterInfoFragment_description.text = "${character.race} ${character.className}"
             }
         })
 
@@ -57,7 +58,11 @@ class CharacterInfoFragment : Fragment() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        //view?.findNavController()?.navigate(R.id.action_characterListFragment_to_newCharacterFragment)
+        if(item.toString() == "Delete Character") {
+            characterViewModel.deleteCharacter(characterId)
+            Toast.makeText(requireActivity().application as CharacterApplication, "Character deleted", Toast.LENGTH_SHORT).show()
+            view?.findNavController()?.navigate(R.id.action_characterInfoFragment_to_characterListFragment)
+        }
         return super.onOptionsItemSelected(item)
     }
 

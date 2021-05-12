@@ -25,4 +25,8 @@ class CharacterRepository(private val characterDao: CharacterDao) {
     fun getCharacter(id: Int) {
         characterDao.getCharacter(id)
     }
+
+    suspend fun deleteCharacter(id: Int) {
+        characterDao.deleteCharacter(id)
+    }
 }

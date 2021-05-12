@@ -20,4 +20,7 @@ interface CharacterDao {
 
     @Query("SELECT * FROM character_table WHERE id LIKE :id")
     fun getCharacter(id: Int): Flow<List<Character>>
+
+    @Query("DELETE FROM character_table WHERE id LIKE :id")
+    suspend fun deleteCharacter(id: Int)
 }
