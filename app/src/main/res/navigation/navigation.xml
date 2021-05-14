@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/characterListFragment"
         android:name="io.github.metalcupcake5.dndapp.CharacterListFragment"
-        android:label="fragment_character_list"
+        android:label="Characters"
         tools:layout="@layout/fragment_character_list" >
         <action
             android:id="@+id/action_characterListFragment_to_newCharacterFragment"
@@ -20,7 +20,7 @@
     <fragment
         android:id="@+id/newCharacterFragment"
         android:name="io.github.metalcupcake5.dndapp.NewCharacterFragment"
-        android:label="fragment_new_character"
+        android:label="Create New Character"
         tools:layout="@layout/fragment_new_character" >
         <action
             android:id="@+id/action_newCharacterFragment_to_characterListFragment"
@@ -29,7 +29,7 @@
     <fragment
         android:id="@+id/characterInfoFragment"
         android:name="io.github.metalcupcake5.dndapp.CharacterInfoFragment"
-        android:label="fragment_character_info"
+        android:label="Character Info"
         tools:layout="@layout/fragment_character_info" >
         <action
             android:id="@+id/action_characterInfoFragment_to_characterListFragment"
