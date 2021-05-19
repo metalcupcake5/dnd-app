@@ -1,6 +1,5 @@
 package io.github.metalcupcake5.dndapp
 
-import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
 import androidx.fragment.app.Fragment
@@ -10,6 +9,8 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import io.github.metalcupcake5.dndapp.data.Character
 import io.github.metalcupcake5.dndapp.data.CharacterApplication
 import io.github.metalcupcake5.dndapp.data.CharacterViewModel
@@ -35,15 +36,44 @@ class NewCharacterFragment : Fragment() {
         val rootView = inflater.inflate(R.layout.fragment_new_character, container, false)
 
         editCharacterView = rootView.findViewById(R.id.textView_newCharacter_name)
-        val spinner: Spinner = rootView.findViewById(R.id.spinner_newCharacter_characterClass)
+        val classSpinner: Spinner = rootView.findViewById(R.id.spinner_newCharacter_characterClass)
+        val raceSpinner: Spinner = rootView.findViewById(R.id.spinner_newCharacter_characterRace)
 
-        ArrayAdapter.createFromResource(
+        // class json
+        val classInputStream = resources.openRawResource(R.raw.classes)
+        val classInputString = classInputStream.bufferedReader().use {
+            it.readText()
+        }
+        // race json
+        val raceInputStream = resources.openRawResource(R.raw.races)
+        val raceInputString = raceInputStream.bufferedReader().use {
+            it.readText()
+        }
+
+        // parsing the string into our custom objects using Gson
+        val gson = Gson()
+        // use the parsing between collection, list, or array section of:
+        // https://medium.com/@hissain.khan/parsing-with-google-gson-library-in-android-kotlin-7920e26f5520
+        val jsonDataType = object : TypeToken<List<String>>() {}.type
+        val classes = gson.fromJson<List<String>>(classInputString, jsonDataType)
+        val races = gson.fromJson<List<String>>(raceInputString, jsonDataType)
+
+        ArrayAdapter(
             requireActivity(),
-            R.array.characterClasses,
-            android.R.layout.simple_spinner_item
+            R.layout.support_simple_spinner_dropdown_item,
+            classes
         ).also { adapter ->
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-            spinner.adapter = adapter
+            classSpinner.adapter = adapter
+        }
+
+        ArrayAdapter(
+            requireActivity(),
+            R.layout.support_simple_spinner_dropdown_item,
+            races
+        ).also { adapter ->
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            raceSpinner.adapter = adapter
         }
 
         val button = rootView.findViewById<Button>(R.id.button_newCharacter_save)
@@ -52,8 +82,11 @@ class NewCharacterFragment : Fragment() {
                 Toast.makeText(requireActivity(), "No name provided!", Toast.LENGTH_SHORT).show()
             } else {
                 val characterName = editCharacterView.text.toString()
-                val characterClass = spinner.selectedItem.toString()
-                val character = Character(name = characterName,className = characterClass)
+                val characterClass = classSpinner.selectedItem.toString()
+                val characterRace = raceSpinner.selectedItem.toString()
+                val character = Character(name = characterName,className = characterClass,race = characterRace)
+                val race = rootView.findViewById<EditText>(R.id.textView_newCharacter_race).text.toString()
+
                 characterViewModel.insert(character)
                 view?.findNavController()?.navigate(R.id.action_newCharacterFragment_to_characterListFragment)
             }
