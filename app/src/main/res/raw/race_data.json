@@ -1,0 +1,192 @@
+{
+  "dragonborn": {
+    "index": "dragonborn",
+    "name": "Dragonborn",
+    "speed": 30,
+    "ability_bonuses": [
+      {
+        "index": "str",
+        "name": "STR",
+        "bonus": 2
+      },
+      {
+        "index": "cha",
+        "name": "CHA",
+        "bonus": 1
+      }
+    ],
+    "size": "Medium"
+  },
+  "dwarf": {
+    "index": "dwarf",
+    "name": "Dwarf",
+    "speed": 25,
+    "ability_bonuses": [
+      {
+        "index": "con",
+        "name": "CON",
+        "bonus": 2
+      }
+    ],
+    "size": "Medium"
+  },
+  "elf": {
+    "index": "elf",
+    "name": "Elf",
+    "speed": 30,
+    "ability_bonuses": [
+      {
+        "index": "dex",
+        "name": "DEX",
+        "bonus": 2
+      }
+    ],
+    "size": "Medium"
+  },
+  "gnome": {
+    "index": "gnome",
+    "name": "Gnome",
+    "speed": 25,
+    "ability_bonuses": [
+      {
+        "index": "int",
+        "name": "INT",
+        "bonus": 2
+      }
+    ],
+    "size": "Small"
+  },
+  "half-elf": {
+    "index": "half-elf",
+    "name": "Half-Elf",
+    "speed": 30,
+    "ability_bonuses": [
+      {
+        "index": "cha",
+        "name": "CHA",
+        "bonus": 2
+      }
+    ],
+    "ability_bonus_options": {
+      "from": [
+        {
+          "index": "str",
+          "name": "STR",
+          "bonus": 1
+        },
+        {
+          "index": "dex",
+          "name": "DEX",
+          "bonus": 1
+        },
+        {
+          "index": "con",
+          "name": "CON",
+          "bonus": 1
+        },
+        {
+          "index": "int",
+          "name": "INT",
+          "bonus": 1
+        },
+        {
+          "index": "wis",
+          "name": "WIS",
+          "bonus": 1
+        }
+      ],
+      "choose": 2,
+      "type": "ability_bonuses"
+    },
+    "size": "Medium"
+  },
+  "half-orc": {
+    "index": "half-orc",
+    "name": "Half-Orc",
+    "speed": 30,
+    "ability_bonuses": [
+      {
+        "index": "str",
+        "name": "STR",
+        "bonus": 2
+      },
+      {
+        "index": "con",
+        "name": "CON",
+        "bonus": 1
+      }
+    ],
+    "size": "Medium"
+  },
+  "halfling": {
+    "index": "halfling",
+    "name": "Halfling",
+    "speed": 25,
+    "ability_bonuses": [
+      {
+        "index": "dex",
+        "name": "DEX",
+        "bonus": 2
+      }
+    ],
+    "size": "Small"
+  },
+  "human": {
+    "index": "human",
+    "name": "Human",
+    "traits": [],
+    "speed": 30,
+    "ability_bonuses": [
+      {
+        "index": "str",
+        "name": "STR",
+        "bonus": 1
+      },
+      {
+        "index": "dex",
+        "name": "DEX",
+        "bonus": 1
+      },
+      {
+        "index": "con",
+        "name": "CON",
+        "bonus": 1
+      },
+      {
+        "index": "int",
+        "name": "INT",
+        "bonus": 1
+      },
+      {
+        "index": "wis",
+        "name": "WIS",
+        "bonus": 1
+      },
+      {
+        "index": "cha",
+        "name": "CHA",
+        "bonus": 1
+      }
+    ],
+    "size": "Medium"
+  },
+  "tiefling": {
+    "index": "tiefling",
+    "name": "Tiefling",
+    "speed": 30,
+    "ability_bonuses": [
+      {
+        "index": "int",
+        "name": "INT",
+        "bonus": 1
+      },
+      {
+        "index": "cha",
+        "name": "CHA",
+        "bonus": 2
+      }
+    ],
+    "size": "Medium"
+  }
+
+}
