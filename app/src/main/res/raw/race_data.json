@@ -56,8 +56,8 @@
     ],
     "size": "Small"
   },
-  "half-elf": {
-    "index": "half-elf",
+  "half_elf": {
+    "index": "half_elf",
     "name": "Half-Elf",
     "speed": 30,
     "ability_bonuses": [
@@ -100,8 +100,8 @@
     },
     "size": "Medium"
   },
-  "half-orc": {
-    "index": "half-orc",
+  "half_orc": {
+    "index": "half_orc",
     "name": "Half-Orc",
     "speed": 30,
     "ability_bonuses": [
