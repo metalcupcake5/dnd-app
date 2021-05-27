@@ -56,7 +56,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/big_padding"
                 android:background="@color/colorPrimary"
-                android:text="@string/button_save"
+                android:text="@string/button_create"
                 android:textColor="@color/buttonLabel" />
 
         </LinearLayout>
