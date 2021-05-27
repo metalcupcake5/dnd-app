@@ -1,5 +1,5 @@
-{
-  "dragonborn": {
+[
+  {
     "index": "dragonborn",
     "name": "Dragonborn",
     "speed": 30,
@@ -17,7 +17,7 @@
     ],
     "size": "Medium"
   },
-  "dwarf": {
+  {
     "index": "dwarf",
     "name": "Dwarf",
     "speed": 25,
@@ -30,7 +30,7 @@
     ],
     "size": "Medium"
   },
-  "elf": {
+  {
     "index": "elf",
     "name": "Elf",
     "speed": 30,
@@ -43,7 +43,7 @@
     ],
     "size": "Medium"
   },
-  "gnome": {
+  {
     "index": "gnome",
     "name": "Gnome",
     "speed": 25,
@@ -56,7 +56,7 @@
     ],
     "size": "Small"
   },
-  "half_elf": {
+  {
     "index": "half_elf",
     "name": "Half-Elf",
     "speed": 30,
@@ -100,7 +100,7 @@
     },
     "size": "Medium"
   },
-  "half_orc": {
+  {
     "index": "half_orc",
     "name": "Half-Orc",
     "speed": 30,
@@ -118,7 +118,7 @@
     ],
     "size": "Medium"
   },
-  "halfling": {
+  {
     "index": "halfling",
     "name": "Halfling",
     "speed": 25,
@@ -131,10 +131,9 @@
     ],
     "size": "Small"
   },
-  "human": {
+  {
     "index": "human",
     "name": "Human",
-    "traits": [],
     "speed": 30,
     "ability_bonuses": [
       {
@@ -170,7 +169,7 @@
     ],
     "size": "Medium"
   },
-  "tiefling": {
+  {
     "index": "tiefling",
     "name": "Tiefling",
     "speed": 30,
@@ -188,5 +187,4 @@
     ],
     "size": "Medium"
   }
-
-}
+]
