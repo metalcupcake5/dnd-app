@@ -36,6 +36,13 @@ class NewCharacterFragment : Fragment() {
         editCharacterView = rootView.findViewById(R.id.textView_newCharacter_name)
         val classSpinner: Spinner = rootView.findViewById(R.id.spinner_newCharacter_characterClass)
         val raceSpinner: Spinner = rootView.findViewById(R.id.spinner_newCharacter_characterRace)
+        val strSpinner: Spinner = rootView.findViewById(R.id.spinner_newCharacter_abilityStr)
+        val dexSpinner: Spinner = rootView.findViewById(R.id.spinner_newCharacter_abilityDex)
+        val conSpinner: Spinner = rootView.findViewById(R.id.spinner_newCharacter_abilityCon)
+        val intSpinner: Spinner = rootView.findViewById(R.id.spinner_newCharacter_abilityInt)
+        val wisSpinner: Spinner = rootView.findViewById(R.id.spinner_newCharacter_abilityWis)
+        val chaSpinner: Spinner = rootView.findViewById(R.id.spinner_newCharacter_abilityCha)
+
 
         // class json
         val classInputStream = resources.openRawResource(R.raw.classes)
@@ -96,10 +103,18 @@ class NewCharacterFragment : Fragment() {
                 val characterClass = classSpinner.selectedItem.toString()
                 val characterRace = raceSpinner.selectedItem.toString()
                 val characterRaceObject = raceData.get(races.indexOf(raceSpinner.selectedItem.toString()))
-                Log.d("new_character_fragment", characterRaceObject.toString())
-                val abilityScores = mutableMapOf<String, Int>("str" to 20, "dex" to 20, "con" to 20, "int" to 20, "wis" to 20, "cha" to 20)
-                val character = Character(name = characterName,className = characterClass,race = characterRace,strength = 20,dexterity = 20,constitution = 20,intelligence = 20,wisdom = 20,charisma = 20)
 
+                // Ability Scores
+                val str = strSpinner.selectedItem.toString().toInt()
+                val dex = dexSpinner.selectedItem.toString().toInt()
+                val con = conSpinner.selectedItem.toString().toInt()
+                val int = intSpinner.selectedItem.toString().toInt()
+                val wis = wisSpinner.selectedItem.toString().toInt()
+                val cha = chaSpinner.selectedItem.toString().toInt()
+
+                val abilityScores = mapOf("str" to str, "dex" to dex, "con" to con, "int" to int, "wis" to wis, "cha" to cha)
+                val character = Character(name = characterName,className = characterClass,race = characterRace,strength = abilityScores["str"],dexterity = abilityScores["dex"],constitution = abilityScores["con"],intelligence = abilityScores["int"],wisdom = abilityScores["wis"],charisma = abilityScores["cha"])
+                Log.d("newcharacterfragment: ", character.toString())
                 characterViewModel.insert(character)
                 view?.findNavController()?.navigate(R.id.action_newCharacterFragment_to_characterListFragment)
             }
