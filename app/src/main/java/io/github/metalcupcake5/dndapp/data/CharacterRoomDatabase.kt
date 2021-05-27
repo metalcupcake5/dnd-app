@@ -10,7 +10,7 @@ import kotlinx.coroutines.launch
 import io.github.metalcupcake5.dndapp.data.Character
 
 // Annotates class to be a Room Database with a table (entity) of the Word class
-@Database(entities = arrayOf(Character::class), version = 1, exportSchema = false)
+@Database(entities = arrayOf(Character::class), version = 2, exportSchema = false)
 public abstract class CharacterRoomDatabase : RoomDatabase() {
 
     abstract fun characterDao(): CharacterDao
@@ -49,7 +49,7 @@ public abstract class CharacterRoomDatabase : RoomDatabase() {
                     context.applicationContext,
                     CharacterRoomDatabase::class.java,
                     "character_database"
-                ).addCallback(CharacterDatabaseCallback(scope)).build()
+                ).addCallback(CharacterDatabaseCallback(scope)).fallbackToDestructiveMigration().build()
                 INSTANCE = instance
                 // return instance
                 instance
