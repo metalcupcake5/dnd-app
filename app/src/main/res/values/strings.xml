@@ -1,10 +1,9 @@
 <resources>
     <string name="app_name">D&amp;D App</string>
-    <string name="add_character">Add Character</string>
+    <string name="create_character">Create Character</string>
     <string name="hint_word">Name...</string>
-    <string name="button_save">Save</string>
+    <string name="button_create">Create</string>
     <string name="empty_not_saved">Character not saved because it is empty.</string>
-    <string name="add_word">Add character</string>
     <string-array name="characterClasses">
         <item>Barbarian</item>
         <item>Bard</item>
