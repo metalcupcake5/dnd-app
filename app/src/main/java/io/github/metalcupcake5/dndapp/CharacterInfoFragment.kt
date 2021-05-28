@@ -43,6 +43,12 @@ class CharacterInfoFragment : Fragment() {
                 val character = characterList[0]
                 textView_characterInfoFragment_name.text = character.name
                 textView_characterInfoFragment_description.text = "${character.race} ${character.className}"
+                textView_characterInfo_strValue.text = character.strength.toString()
+                textView_characterInfo_dexValue.text = character.dexterity.toString()
+                textView_characterInfo_conValue.text = character.constitution.toString()
+                textView_characterInfo_intValue.text = character.intelligence.toString()
+                textView_characterInfo_wisValue.text = character.wisdom.toString()
+                textView_characterInfo_chaValue.text = character.charisma.toString()
             }
         })
 
