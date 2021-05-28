@@ -41,6 +41,8 @@ class CharacterInfoFragment : Fragment() {
             characterList = characters.filter{ it.id == characterId }
             if(characterList.isNotEmpty()){
                 val character = characterList[0]
+                Log.d("characterinfofragment ", "right before name yea ok")
+                Log.d("characterinfofragment: ", character.name)
                 textView_characterInfoFragment_name.text = character.name
                 textView_characterInfoFragment_description.text = "${character.race} ${character.className}"
                 textView_characterInfo_level.text = "${character.xp} xp"
@@ -52,6 +54,7 @@ class CharacterInfoFragment : Fragment() {
                 textView_characterInfo_wisValue.text = character.wisdom.toString()
                 textView_characterInfo_chaValue.text = character.charisma.toString()
             }
+            characterViewModel.allCharacters.removeObservers(requireActivity())
         })
 
         setHasOptionsMenu(true)
