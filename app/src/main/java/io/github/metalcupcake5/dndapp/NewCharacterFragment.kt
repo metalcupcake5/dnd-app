@@ -127,8 +127,8 @@ class NewCharacterFragment : Fragment() {
                     dexterity = abilityScores["dex"],
                     constitution = abilityScores["con"],
                     intelligence = abilityScores["int"],
-                    wisdom = abilityScores["wis"]
-                    ,charisma = abilityScores["cha"]
+                    wisdom = abilityScores["wis"],
+                    charisma = abilityScores["cha"]
                 )
                 characterViewModel.insert(character)
                 view?.findNavController()?.navigate(R.id.action_newCharacterFragment_to_characterListFragment)
