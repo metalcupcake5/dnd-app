@@ -44,6 +44,7 @@ class CharacterInfoFragment : Fragment() {
                 textView_characterInfoFragment_name.text = character.name
                 textView_characterInfoFragment_description.text = "${character.race} ${character.className}"
                 textView_characterInfo_level.text = "${character.xp} xp"
+                textView_characterInfo_speed.text = "Speed: ${character.speed}"
                 textView_characterInfo_strValue.text = character.strength.toString()
                 textView_characterInfo_dexValue.text = character.dexterity.toString()
                 textView_characterInfo_conValue.text = character.constitution.toString()
