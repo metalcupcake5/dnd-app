@@ -102,7 +102,7 @@ class NewCharacterFragment : Fragment() {
                 val characterName = editCharacterView.text.toString()
                 val characterClass = classSpinner.selectedItem.toString()
                 val characterRace = raceSpinner.selectedItem.toString()
-                val characterRaceObject = raceData.get(races.indexOf(raceSpinner.selectedItem.toString()))
+                val characterRaceObject = raceData[races.indexOf(raceSpinner.selectedItem.toString())]
 
                 // Ability Scores
                 val str = strSpinner.selectedItem.toString().toInt()
@@ -112,9 +112,14 @@ class NewCharacterFragment : Fragment() {
                 val wis = wisSpinner.selectedItem.toString().toInt()
                 val cha = chaSpinner.selectedItem.toString().toInt()
 
-                val abilityScores = mapOf("str" to str, "dex" to dex, "con" to con, "int" to int, "wis" to wis, "cha" to cha)
+                val abilityScores = mutableMapOf("str" to str, "dex" to dex, "con" to con, "int" to int, "wis" to wis, "cha" to cha)
+                characterRaceObject.ability_bonuses.forEach { bonus ->
+                    val currentValue = abilityScores[bonus.index]
+                    if (currentValue != null) {
+                        abilityScores[bonus.index] = currentValue + bonus.bonus
+                    }
+                }
                 val character = Character(name = characterName,className = characterClass,race = characterRace,strength = abilityScores["str"],dexterity = abilityScores["dex"],constitution = abilityScores["con"],intelligence = abilityScores["int"],wisdom = abilityScores["wis"],charisma = abilityScores["cha"])
-                Log.d("newcharacterfragment: ", character.toString())
                 characterViewModel.insert(character)
                 view?.findNavController()?.navigate(R.id.action_newCharacterFragment_to_characterListFragment)
             }
