@@ -119,7 +119,17 @@ class NewCharacterFragment : Fragment() {
                         abilityScores[bonus.index] = currentValue + bonus.bonus
                     }
                 }
-                val character = Character(name = characterName,className = characterClass,race = characterRace,strength = abilityScores["str"],dexterity = abilityScores["dex"],constitution = abilityScores["con"],intelligence = abilityScores["int"],wisdom = abilityScores["wis"],charisma = abilityScores["cha"])
+                val character = Character(
+                    name = characterName,
+                    className = characterClass,
+                    race = characterRace,
+                    strength = abilityScores["str"],
+                    dexterity = abilityScores["dex"],
+                    constitution = abilityScores["con"],
+                    intelligence = abilityScores["int"],
+                    wisdom = abilityScores["wis"]
+                    ,charisma = abilityScores["cha"]
+                )
                 characterViewModel.insert(character)
                 view?.findNavController()?.navigate(R.id.action_newCharacterFragment_to_characterListFragment)
             }
