@@ -106,10 +106,10 @@ class EditCharacterFragment : Fragment() {
             characterList = characters.filter { it.id == characterId }
             if (characterList.isNotEmpty()) {
                 val character = characterList[0]
-                Log.d("characterinfofragment ", "right before name yea ok")
-                Log.d("characterinfofragment: ", character.name)
+                Log.d("editcharacterfragment ", "editCharacterFragment")
+                Log.d("editcharacterfragment: ", character.name)
 
-                editText_editCharacter_name.setText(character.name)
+                editCharacterView.setText(character.name)
                 classSpinner.setSelection(classes.indexOf(character.className))
                 raceSpinner.setSelection(races.indexOf(character.race))
                 character.strength?.let { strSpinner.setSelection(it) }
@@ -127,7 +127,8 @@ class EditCharacterFragment : Fragment() {
             if (TextUtils.isEmpty(editCharacterView.text)) {
                 Toast.makeText(requireActivity(), "No name provided!", Toast.LENGTH_SHORT).show()
             } else {
-
+                Log.d("editcharacterfragment ", "editCharacterFragment")
+                Log.d("editcharacterfragment: ", editCharacterView.text.toString())
                 val characterName = editCharacterView.text.toString()
                 val characterClass = classSpinner.selectedItem.toString()
                 val characterRace = raceSpinner.selectedItem.toString()
@@ -168,9 +169,9 @@ class EditCharacterFragment : Fragment() {
                     charisma = abilityScores["cha"],
                     speed = characterRaceObject.speed
                 )
-                characterViewModel.insert(character)
+                characterViewModel.updateCharacter(character)
                 view?.findNavController()
-                    ?.navigate(R.id.action_editCharacterFragment_to_characterInfoFragment)
+                    ?.navigate(R.id.action_editCharacterFragment_to_characterListFragment)
             }
         }
         return rootView

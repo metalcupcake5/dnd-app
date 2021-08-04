@@ -43,7 +43,7 @@
         android:name="io.github.metalcupcake5.dndapp.EditCharacterFragment"
         android:label="EditCharacterFragment" >
         <action
-            android:id="@+id/action_editCharacterFragment_to_characterInfoFragment"
-            app:destination="@id/characterInfoFragment" />
+            android:id="@+id/action_editCharacterFragment_to_characterListFragment"
+            app:destination="@id/characterListFragment" />
     </fragment>
 </navigation>
