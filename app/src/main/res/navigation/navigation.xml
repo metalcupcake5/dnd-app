@@ -34,5 +34,16 @@
         <action
             android:id="@+id/action_characterInfoFragment_to_characterListFragment"
             app:destination="@id/characterListFragment" />
+        <action
+            android:id="@+id/action_characterInfoFragment_to_editCharacterFragment"
+            app:destination="@id/editCharacterFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/editCharacterFragment"
+        android:name="io.github.metalcupcake5.dndapp.EditCharacterFragment"
+        android:label="EditCharacterFragment" >
+        <action
+            android:id="@+id/action_editCharacterFragment_to_characterInfoFragment"
+            app:destination="@id/characterInfoFragment" />
     </fragment>
 </navigation>
