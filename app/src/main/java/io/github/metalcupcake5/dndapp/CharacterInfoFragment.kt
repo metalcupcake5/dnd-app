@@ -74,6 +74,11 @@ class CharacterInfoFragment : Fragment() {
             Toast.makeText(requireActivity().application as CharacterApplication, "Character deleted", Toast.LENGTH_SHORT).show()
             view?.findNavController()?.navigate(R.id.action_characterInfoFragment_to_characterListFragment)
         }
+        if(item.toString() == "Edit Character") {
+            val bundle = Bundle()
+            bundle.putInt("id", characterId)
+            view?.findNavController()?.navigate(R.id.action_characterInfoFragment_to_editCharacterFragment, bundle)
+        }
         return super.onOptionsItemSelected(item)
     }
 
