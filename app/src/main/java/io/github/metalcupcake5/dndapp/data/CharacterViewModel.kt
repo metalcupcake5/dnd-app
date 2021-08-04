@@ -33,6 +33,10 @@ class CharacterViewModel(private val repository: CharacterRepository) : ViewMode
         val character = Character(name = name,className = className,race = race)
         repository.insert(character)
     }
+
+    fun updateCharacter(character: Character) = viewModelScope.launch {
+        repository.updateCharacter(character)
+    }
 }
 class CharacterViewModelFactory(private val repository: CharacterRepository) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {

@@ -29,4 +29,7 @@ class CharacterRepository(private val characterDao: CharacterDao) {
     suspend fun deleteCharacter(id: Int) {
         characterDao.deleteCharacter(id)
     }
+    suspend fun updateCharacter(character: Character){
+        characterDao.updateCharacter(character)
+    }
 }

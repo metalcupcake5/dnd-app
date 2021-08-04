@@ -1,9 +1,6 @@
 package io.github.metalcupcake5.dndapp.data
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 import kotlinx.coroutines.flow.Flow
 
 @Dao
@@ -12,7 +9,7 @@ interface CharacterDao {
     @Query("SELECT * FROM character_table")
     fun getAllCharacters(): Flow<List<Character>>
 
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(character: Character)
 
     @Query("DELETE FROM character_table")
@@ -23,4 +20,7 @@ interface CharacterDao {
 
     @Query("DELETE FROM character_table WHERE id LIKE :id")
     suspend fun deleteCharacter(id: Int)
+
+    @Update()
+    suspend fun updateCharacter(character: Character)
 }
